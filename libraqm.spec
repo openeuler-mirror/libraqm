@@ -1,12 +1,12 @@
 Name:				libraqm
 Version:			0.7.0
-Release:			1
+Release:			2
 License:			MIT
 Summary:			Complex Textlayout Library
 URL:				https://github.com/HOST-Oman/libraqm
 Source:				https://github.com/HOST-Oman/libraqm/releases/download/v%{version}/raqm-%{version}.tar.gz
 
-BuildRequires:      python3 freetype-devel harfbuzz-devel fribidi-devel gtk-doc
+BuildRequires:      python3 freetype-devel harfbuzz-devel fribidi-devel gtk-doc gcc
 
 %description
 Library that encapsulates the logic for complex
@@ -60,5 +60,8 @@ rm -f %{buildroot}%{_libdir}/*.{la,a}
 %{_datadir}/gtk-doc/html/raqm
 
 %changelog
+* Tue Jun 08 2021 wulei <wulei80@huawei.com> - 0.7.0-2
+- fixes failed: error: no acceptable C compiler found in $PATH
+
 * Tue Mar 2 2021 wangye <wangye70@huawei.com> - 0.7.0-1
 - package init
