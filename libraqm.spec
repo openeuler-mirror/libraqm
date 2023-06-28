@@ -1,6 +1,6 @@
 Name:				libraqm
 Version:			0.7.0
-Release:			3
+Release:			4
 License:			MIT
 Summary:			Complex Textlayout Library
 URL:				https://github.com/HOST-Oman/libraqm
@@ -31,6 +31,10 @@ This package contains documentation files for raqm.
 %prep
 %autosetup -n raqm-%{version} -p1
 sed s:python:%{__python3}:g -i tests/Makefile.in
+%if "%toolchain" == "clang"
+    CFLAGS="$CFLAGS -Wno-error=tautological-overlap-compare"
+    export CFLAGS
+%endif
 %configure --enable-gtk-doc
 
 %build
@@ -61,6 +65,9 @@ rm -f %{buildroot}%{_libdir}/*.{la,a}
 %{_datadir}/gtk-doc/html/raqm
 
 %changelog
+* Tue Jun 06 2023 Xiaoya Huang <huangxiaoya@iscas.ac.cn> - 0.7.0-4
+- Add warning options to suppress warnings
+
 * Tue Jan 11 2022 wulei <wulei80@huawei.com> - 0.7.0-3
 - Fix cursor_position_GB8a.test failure
 
